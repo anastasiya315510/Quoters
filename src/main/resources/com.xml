@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean class="my_spring.quotes.bpp.InjectByIntBeanPostProcessor"/>
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+    <bean class="my_spring.quotes.bpp.BenchmarkBeanPostProcessor"/>
+    <bean id="talkingRobot" class="my_spring.quotes.TalkingRobotImpl">
+        <property name="quoter">
+            <list>
+                <ref bean="terminatorQuoter"/>
+                <ref bean="shakespeareQuote"/>
+
+            </list>
+        </property>
+    </bean>
+    <bean id="shakespeareQuote" class="my_spring.quotes.ShakespeareQuoter">
+        <property name="message" value="2 b || not 2b"></property>
+    </bean>
+    <bean id="terminatorQuoter" class="my_spring.quotes.TerminatorQuoter">
+        <property name="messages">
+            <list>
+                <value>I'll be back</value>
+                <value>Give me your cloth</value>
+                <value>You're not a cyborg</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>
